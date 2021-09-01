@@ -6,7 +6,7 @@ import PlaceDetails from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles';
 import { Place } from '@material-ui/icons';
 
-const List = ({ places }) => {
+const List = ({ places, childClicked }) => {
     const classes = useStyles();
     const [type, setType] = useState('restaurants');
     const [rating, setRating] = useState('');

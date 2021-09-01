@@ -8,6 +8,7 @@ import Map from './components/Map/Map';
 
 const App = () => {
     const [places, setPlaces] = useState([]);
+    const [childClicked, setChildClicked] = useState(null);
 
     const [coordinates, setCoordinates] = useState({});
     const [bounds, setBounds] = useState({});
@@ -32,10 +33,10 @@ const App = () => {
             <Header />
             <Grid container spacing={3} style={{ width: '100%' }}>
                <Grid item xs={12} md={4}>
-                  <List places={places} />
+                  <List places={places} childClicked={childClicked} />
                </Grid>
                <Grid item xs={12} md={8}>
-                  <Map places={places} setCoordinates={setCoordinates} setBounds={setBounds} coordinates={coordinates} />
+                  <Map places={places} setCoordinates={setCoordinates} setBounds={setBounds} coordinates={coordinates} setChildClicked={setChildClicked} />
                </Grid>
             </Grid>
         </>
