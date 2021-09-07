@@ -6,7 +6,7 @@ import Rating from '@material-ui/lab/Rating';
 
 import useStyles from './styles';
 
-const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, weatherData }) => {
+const Map = ({ setCoords, setBounds, coords, places, setChildClicked, weatherData }) => {
     const classes = useStyles();
     const isDesktop = useMediaQuery('(min-width: 600px)');
 
@@ -14,18 +14,18 @@ const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, 
         <div className={classes.mapContainer}>
             <GoogleMapReact 
                bootstrapURLKeys={{ key: 'AIzaSyAYymITXiUA44gPVlPSrR3KagCefYwfdYA' }} 
-               defaultCenter={coordinates}
-               center={coordinates}
+               defaultCenter={coords}
+               center={coords}
                defaultZoom={14} 
                margin={[50, 50, 50, 50]} 
                options={''} 
                onChange={(e) => {
-                   setCoordinates({ lat: e.center.lat, lng: e.center.lng});
+                   setCoords({ lat: e.center.lat, lng: e.center.lng});
                    setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
                    
                }} 
                onChildClick={(child) => setChildClicked(child)}>
-                 {places?.map((place, i) => (
+                 {places.length && places.map((place, i) => (
                     <div className={classes.markerContainer} lat={Number(place.latitude)} lng={Number(place.longitude)} key={i} >
                         {
                             !isDesktop ? (
@@ -36,14 +36,14 @@ const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, 
                                        {place.name}
                                    </Typography>
                                    <img className={classes.pointer} src={place.photo ? place.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'} alt={place.name} />
-                                   <Rating size="small" value={Number(place.rating)} readOnly />
+                                   <Rating name="read-only" size="small" value={Number(place.rating)} readOnly />
                                 </Paper>
                             )
                         }
                     </div>
                  ))}
 
-                 {weatherData?.list?.map((data, i) => (
+                 {weatherData?.list?.length && weatherData.list.map((data, i) => (
                      <div key={i} lat={data.coord.lat} lng={data.coord.lon}>
                        <img height={100} src={`https://openweathermap.org/img/w/${data.weather[0].icon}.png`} />
                     </div>
