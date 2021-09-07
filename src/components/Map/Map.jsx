@@ -46,7 +46,7 @@ const Map = ({ setCoords, setBounds, coords, places, setChildClicked, weatherDat
 
                  {weatherData?.list?.length && weatherData.list.map((data, i) => (
                      <div key={i} lat={data.coord.lat} lng={data.coord.lon}>
-                       <img height={100} src={`https://openweathermap.org/img/w/${data.weather[0].icon}.png`} />
+                       <img height="70px" src={`https://openweathermap.org/img/w/${data.weather[0].icon}.png`} />
                     </div>
                  ))}
 

@@ -19,16 +19,16 @@ const PlaceDetails = ({ place, selected, refProp }) => {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5">{place.name}</Typography>
-                <Box display="flex" justifyContent="space-between">
-                <Rating value={Number(place.rating)} readOnly />
-                   <Typography gutterBottom variant="subtitle1">Out of {place.num_reviews} reviews</Typography>
+                <Box display="flex" justifyContent="space-between" my={2}>
+                <Rating name="read-only" value={Number(place.rating)} readOnly />
+                <Typography component="legend">{place.num_reviews} review{place.num_reviews > 1 && 's'}</Typography>
                 </Box>
                 <Box display="flex" justifyContent="space-between">
-                   <Typography variant="subtitle1">Price</Typography>
+                   <Typography component="legend">Price</Typography>
                    <Typography gutterBottom variant="subtitle1">{place.price_level}</Typography>
                 </Box>
                 <Box display="flex" justifyContent="space-between">
-                   <Typography variant="subtitle1">Ranking</Typography>
+                   <Typography component="legend">Ranking</Typography>
                    <Typography gutterBottom variant="subtitle1">{place.ranking}</Typography>
                 </Box>
                 {place?.awards?.map((award) => (
@@ -40,16 +40,17 @@ const PlaceDetails = ({ place, selected, refProp }) => {
                 {place?.cuisine?.map(({ name }) => (
                     <Chip key={name} size="small" label={name} className={classes.chip} />
                 ))}
-                {place?.address && (
+                {place.address && (
                     <Typography gutterBottom variant="body2" color="textSecondary" className={classes.subtitle} >
                         <LocationOnIcon /> {place.address}
                     </Typography>
                 )}
-                {place?.phone && (
+                {place.phone && (
                     <Typography gutterBottom variant="body2" color="textSecondary" className={classes.spacing} >
                         <PhoneIcon /> {place.phone}
                     </Typography>
                 )}
+                </CardContent>
                 <CardActions>
                     <Button size="small" color="primary" onClick={() => window.open(place.web_url, '_blank')} >
                         Trip Advisor
@@ -58,7 +59,6 @@ const PlaceDetails = ({ place, selected, refProp }) => {
                         Website
                     </Button>
                 </CardActions>
-            </CardContent>
         </Card>
     );
 }
