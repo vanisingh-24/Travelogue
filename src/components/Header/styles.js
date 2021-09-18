@@ -5,6 +5,8 @@ export default makeStyles((theme) => ({
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
+      marginRight:'20px',
+      marginTop: '8px'
     },
   },
   search: {
@@ -15,6 +17,7 @@ export default makeStyles((theme) => ({
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
+    marginTop: '8px',
     [theme.breakpoints.up('sm')]: { marginLeft: theme.spacing(3), width: 'auto' },
   },
   searchIcon: {
@@ -29,4 +32,10 @@ export default makeStyles((theme) => ({
   toolbar: {
     display: 'flex', justifyContent: 'space-between',
   },
+  button:{
+    marginRight:'10px',
+    [theme.breakpoints.down('sm')]: {
+      display:'none'
+    }
+  }
 }));
